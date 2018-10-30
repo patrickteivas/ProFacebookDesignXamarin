@@ -4,7 +4,7 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_margin="10">
+	android:padding="10dp">
 	<LinearLayout
 		android:orientation="horizontal"
 		android:minWidth="25px"
@@ -12,11 +12,10 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 		<ImageView
-			android:src="@android:drawable/ic_menu_gallery"
-			android:layout_width="wrap_content"
-			android:layout_height="60dp"
-			android:id="@+id/icon"
-			android:gravity="center"/>
+			android:src="@drawable/unnamed"
+			android:layout_width="64px"
+			android:layout_height="64px"
+			android:id="@+id/avatar"/>
 		<TextView
 			android:text="Nimi Perekonnanimi"
 			android:textAppearance="?android:attr/textAppearanceMedium"
@@ -30,7 +29,7 @@
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="fill_parent"
 			android:layout_height="match_parent"
-			android:id="@+id/clock"
+			android:id="@+id/date"
 			android:textColor="#ff000000"
 			android:gravity="right"/>
 	</LinearLayout>
@@ -39,7 +38,7 @@
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/clock"
+		android:id="@+id/msg"
 		android:textColor="#ff000000"/>
 	<LinearLayout
 		android:orientation="horizontal"
@@ -52,15 +51,15 @@
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/clock"
+			android:id="@+id/likes"
 			android:textColor="#ff000000"/>
 		<TextView
 			android:text="Comments"
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/clock"
+			android:id="@+id/comments"
 			android:textColor="#ff000000"
 			android:gravity="right"/>
-	</LineraLayout>
+	</LinearLayout>
 </LinearLayout>

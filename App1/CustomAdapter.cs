@@ -25,7 +25,7 @@ namespace App1
 
         public override string this[int position]
         {
-            get { return items[position].ToString(); }
+            get { return items[position].Name.ToString(); }
         }
 
         public override int Count
@@ -45,8 +45,10 @@ namespace App1
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
 
-            view.FindViewById<TextView>(Resource.Id.minMaxTemp).Text = items[position].Temperature;
-            MainActivity.SetIcon(items[position].WeatherType, view.FindViewById<ImageView>(Resource.Id.icon));
+            view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
+            view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
+            view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
+            view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.ToString() + " Comments";
             return view;
         }
     }
