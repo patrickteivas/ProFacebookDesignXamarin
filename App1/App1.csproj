@@ -56,9 +56,10 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="CustomAdapter.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="SocialPost.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

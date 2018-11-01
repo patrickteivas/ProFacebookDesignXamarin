@@ -14,10 +14,10 @@ namespace App1
 {
     class CustomAdapter : BaseAdapter<string>
     {
-        readonly List<Person> items;
+        readonly List<SocialPost> items;
         readonly Activity context;
 
-        public CustomAdapter(Activity context, List<Person> items) : base()
+        public CustomAdapter(Activity context, List<SocialPost> items) : base()
         {
             this.context = context;
             this.items = items;
@@ -46,10 +46,18 @@ namespace App1
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
 
             view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
+            view.FindViewById<TextView>(Resource.Id.date).Text = " " + items[position].Date;
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
-            view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.ToString() + " Comments";
+            view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
+
+            view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => CustomAdapter_Click(position);
             return view;
+        }
+
+        private void CustomAdapter_Click(int Position)
+        {
+            Toast.MakeText(this, items[Position], ToastLength.Short).Show();
         }
     }
 }

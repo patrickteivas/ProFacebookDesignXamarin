@@ -12,11 +12,12 @@ using Android.Widget;
 
 namespace App1
 {
-    public class Person
+    public class SocialPost
     {
         public string Name { get; set; }
         public string Message { get; set; }
         public int Likes { get; set; }
-        public int Comments { get; set; }
+        public DateTimeOffset Date { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
