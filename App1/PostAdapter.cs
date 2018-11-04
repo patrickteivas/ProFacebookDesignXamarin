@@ -9,15 +9,16 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace App1
 {
-    class CustomAdapter : BaseAdapter<string>
+    class PostAdapter : BaseAdapter<string>
     {
         readonly List<SocialPost> items;
         readonly Activity context;
 
-        public CustomAdapter(Activity context, List<SocialPost> items) : base()
+        public PostAdapter(Activity context, List<SocialPost> items) : base()
         {
             this.context = context;
             this.items = items;
@@ -57,7 +58,9 @@ namespace App1
 
         private void CustomAdapter_Click(int Position)
         {
-            Toast.MakeText(this, items[Position], ToastLength.Short).Show();
+            Intent commentsActivity = new Intent(context, typeof(CommentActivity));
+            commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[Position].Comments));
+            context.StartActivity(commentsActivity);
         }
     }
 }

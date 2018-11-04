@@ -18,7 +18,7 @@ namespace App1
             //SetContentView(Resource.Layout.activity_main);
 
             List<SocialPost> posts = new List<SocialPost>();
-            List<Comment> comments= new List<Comment>();
+            List<Comment> comments = new List<Comment>();
 
             Comment Comment = new Comment
             {
@@ -162,7 +162,7 @@ namespace App1
             };
             posts.Add(post);
 
-            ListAdapter = new CustomAdapter(this, posts);
+            ListAdapter = new PostAdapter(this, posts);
 
         }
     }
