@@ -52,15 +52,24 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
 
-            view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => CustomAdapter_Click(position);
+            view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => CustomAdapter_Comments(position);
+            //view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) => CustomAdapter_Likes(position);
+
             return view;
         }
 
-        private void CustomAdapter_Click(int Position)
+        //private void CustomAdapter_Likes(int position)
+        //{
+
+        //}
+
+        private void CustomAdapter_Comments(int Position)
         {
             Intent commentsActivity = new Intent(context, typeof(CommentActivity));
             commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[Position].Comments));
             context.StartActivity(commentsActivity);
         }
+
+
     }
 }
