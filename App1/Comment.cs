@@ -17,5 +17,6 @@ namespace App1
         public string Name { get; set; }
         public string Message { get; set; }
         public int Likes { get; set; }
+        public bool IsLiked { get; set; } = false;
     }
 }

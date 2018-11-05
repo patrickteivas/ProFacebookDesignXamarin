@@ -48,14 +48,7 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
-
-            //view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => CustomAdapter_Click(position);
             return view;
         }
-
-        //private void CustomAdapter_Click(int Position)
-        //{
-        //    Toast.MakeText(this, items[Position], ToastLength.Short).Show();
-        //}
     }
 }

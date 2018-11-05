@@ -60,8 +60,11 @@ namespace App1
 
         private void CustomAdapter_Likes(int position)
         {
-            items[position].Likes++;
+            if (!items[position].IsLiked) items[position].Likes++;
+            else items[position].Likes--;
 
+            Intent mainActivity = new Intent(context, typeof(MainActivity));
+            context.StartActivity(mainActivity);
         }
 
         private void CustomAdapter_Comments(int Position)

@@ -20,13 +20,13 @@ namespace App1
             // Set our view from the "main" layout resource
             //SetContentView(Resource.Layout.activity_main);
 
-            if(posts == null) testPosts();
+            if(posts == null) TestPosts();
 
             ListAdapter = new PostAdapter(this, posts);
 
         }
 
-        public void testPosts()
+        public void TestPosts()
         {
             posts = new List<SocialPost>();
             comments = new List<Comment>();

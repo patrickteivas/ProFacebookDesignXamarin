@@ -19,5 +19,6 @@ namespace App1
         public int Likes { get; set; }
         public DateTimeOffset Date { get; set; }
         public List<Comment> Comments { get; set; }
+        public bool IsLiked { get; set; } = false;
     }
 }
