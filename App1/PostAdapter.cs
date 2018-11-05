@@ -53,15 +53,16 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
 
             view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => CustomAdapter_Comments(position);
-            //view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) => CustomAdapter_Likes(position);
+            view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) => CustomAdapter_Likes(position);
 
             return view;
         }
 
-        //private void CustomAdapter_Likes(int position)
-        //{
+        private void CustomAdapter_Likes(int position)
+        {
+            items[position].Likes++;
 
-        //}
+        }
 
         private void CustomAdapter_Comments(int Position)
         {
@@ -69,7 +70,5 @@ namespace App1
             commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[Position].Comments));
             context.StartActivity(commentsActivity);
         }
-
-
     }
 }

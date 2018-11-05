@@ -11,14 +11,25 @@ namespace App1
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : ListActivity
     {
+        List<SocialPost> posts;
+        List<Comment> comments;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             //SetContentView(Resource.Layout.activity_main);
 
-            List<SocialPost> posts = new List<SocialPost>();
-            List<Comment> comments = new List<Comment>();
+            if(posts == null) testPosts();
+
+            ListAdapter = new PostAdapter(this, posts);
+
+        }
+
+        public void testPosts()
+        {
+            posts = new List<SocialPost>();
+            comments = new List<Comment>();
 
             Comment Comment = new Comment
             {
@@ -161,9 +172,6 @@ namespace App1
                 Comments = comments
             };
             posts.Add(post);
-
-            ListAdapter = new PostAdapter(this, posts);
-
         }
     }
 }
