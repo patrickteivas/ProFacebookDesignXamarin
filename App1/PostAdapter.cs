@@ -67,6 +67,7 @@ namespace App1
 
             Intent mainActivity = new Intent(context, typeof(MainActivity));
             mainActivity.SetFlags(ActivityFlags.ClearTop);
+            mainActivity.SetFlags(ActivityFlags.NoAnimation);
             context.StartActivity(mainActivity);
         }
 
