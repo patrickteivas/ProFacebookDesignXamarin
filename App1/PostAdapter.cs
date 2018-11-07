@@ -47,7 +47,7 @@ namespace App1
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
 
             view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
-            view.FindViewById<TextView>(Resource.Id.date).Text = " " + items[position].Date;
+            view.FindViewById<TextView>(Resource.Id.date).Text = " " + items[position].Date.ToString("HH:mm");
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
@@ -58,12 +58,15 @@ namespace App1
             return view;
         }
 
-        private void CustomAdapter_Likes(int position)
+        public void CustomAdapter_Likes(int position)
         {
-            if (!items[position].IsLiked) items[position].Likes++;
-            else items[position].Likes--;
+            if (!MainActivity.posts[position].IsLiked) MainActivity.posts[position].Likes++;
+            else  MainActivity.posts[position].Likes--;
+            MainActivity.posts[position].IsLiked = !MainActivity.posts[position].IsLiked;
+
 
             Intent mainActivity = new Intent(context, typeof(MainActivity));
+            mainActivity.SetFlags(ActivityFlags.ClearTop);
             context.StartActivity(mainActivity);
         }
 

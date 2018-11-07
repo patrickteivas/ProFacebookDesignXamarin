@@ -9,10 +9,11 @@ using System;
 namespace App1
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+
     public class MainActivity : ListActivity
     {
-        List<SocialPost> posts;
-        List<Comment> comments;
+        public static List<SocialPost> posts;
+        public static List<Comment> comments;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -23,7 +24,6 @@ namespace App1
             if(posts == null) TestPosts();
 
             ListAdapter = new PostAdapter(this, posts);
-
         }
 
         public void TestPosts()
