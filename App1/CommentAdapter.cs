@@ -48,6 +48,14 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
+
+            view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) =>
+            {
+                if (!items[position].IsLiked) items[position].Likes++;
+                else items[position].Likes--;
+                items[position].IsLiked = !items[position].IsLiked;
+                view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
+            };
             return view;
         }
     }
