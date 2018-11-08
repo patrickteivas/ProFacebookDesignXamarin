@@ -97,7 +97,9 @@ namespace App1
                 Message = "Testing message",
                 Likes = 0,
                 Date = DateTimeOffset.FromUnixTimeSeconds(1500056855),
-                Comments = comments
+                Comments = comments,
+                ContainsPic = true,
+                Pic = Resource.Drawable.haters
             };
             posts.Add(post);
 
@@ -169,7 +171,9 @@ namespace App1
                 Message = "See sonum on tekkinud siia ns",
                 Likes = 0,
                 Date = DateTimeOffset.FromUnixTimeSeconds(1205056005),
-                Comments = comments
+                Comments = comments,
+                ContainsPic = true,
+                Pic = Resource.Drawable.Random
             };
             posts.Add(post);
         }

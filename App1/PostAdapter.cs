@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -49,6 +50,11 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.name).Text = " " + items[position].Name;
             view.FindViewById<TextView>(Resource.Id.date).Text = " " + items[position].Date.ToString("HH:mm");
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
+
+            if(items[position].ContainsPic)
+                view.FindViewById<ImageView>(Resource.Id.img).SetImageResource(items[position].Pic);
+
+
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
 
@@ -62,7 +68,11 @@ namespace App1
             {
                 if (!items[position].IsLiked) items[position].Likes++;
                 else items[position].Likes--;
+
+                MainActivity.posts[position].Likes = items[position].Likes;
                 items[position].IsLiked = !items[position].IsLiked;
+
+                MainActivity.posts[position].IsLiked = items[position].IsLiked;
                 view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             };
 

@@ -53,6 +53,7 @@ namespace App1
             {
                 if (!items[position].IsLiked) items[position].Likes++;
                 else items[position].Likes--;
+                //MainActivity.posts[position].Comments[].Likes = items[position].Likes;
                 items[position].IsLiked = !items[position].IsLiked;
                 view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             };
