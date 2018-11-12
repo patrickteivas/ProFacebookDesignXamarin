@@ -57,13 +57,20 @@
 			android:layout_height="wrap_content"
 			android:id="@+id/likes"
 			android:textColor="#ff000000"/>
-		<TextView
-			android:text="Comments"
-			android:textAppearance="?android:attr/textAppearanceMedium"
+		<LinearLayout
+			android:orientation="horizontal"
+			android:minWidth="25px"
+			android:minHeight="25px"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/comments"
-			android:textColor="#ff000000"
-			android:gravity="right"/>
+			android:gravity="right">
+			<TextView
+				android:text="Comments"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/comments"
+				android:textColor="#ff000000"/>
+		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
