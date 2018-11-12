@@ -16,11 +16,13 @@ namespace App1
     {
         readonly List<Comment> items;
         readonly Activity context;
+        readonly int postPosition;
 
-        public CommentAdapter(Activity context, List<Comment> items) : base()
+        public CommentAdapter(Activity context, List<Comment> items, int postPosition) : base()
         {
             this.context = context;
             this.items = items;
+            this.postPosition = postPosition;
         }
 
         public override string this[int position]
@@ -49,15 +51,26 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
 
-            view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) =>
-            {
-                if (!items[position].IsLiked) items[position].Likes++;
-                else items[position].Likes--;
-                //MainActivity.posts[position].Comments[].Likes = items[position].Likes;
-                items[position].IsLiked = !items[position].IsLiked;
-                view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
-            };
+            TextView commentLikes = view.FindViewById<TextView>(Resource.Id.likes);
+            commentLikes.Tag = position;
+            commentLikes.Click -= LikeClick;
+            commentLikes.Click += LikeClick;
             return view;
+        }
+
+        private void LikeClick(object sender, EventArgs e)
+        {
+            TextView clickedLikeButton = (TextView)sender;
+            int position = (int)clickedLikeButton.Tag;
+
+            if (!items[position].IsLiked) items[position].Likes++;
+            else items[position].Likes--;
+
+            MainActivity.posts[postPosition].Comments[position].Likes = items[position].Likes;
+            items[position].IsLiked = !items[position].IsLiked;
+
+            MainActivity.posts[postPosition].Comments[position].IsLiked = items[position].IsLiked;
+            NotifyDataSetChanged();
         }
     }
 }

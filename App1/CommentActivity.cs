@@ -21,8 +21,9 @@ namespace App1
             base.OnCreate(savedInstanceState);
 
             List<Comment> Comments = JsonConvert.DeserializeObject<List<Comment>>(Intent.GetStringExtra("Comments"));
+            int position = Intent.GetIntExtra("PostPosition", -1);
 
-            ListAdapter = new CommentAdapter(this, Comments);
+            ListAdapter = new CommentAdapter(this, Comments, position);
         }
     }
 }

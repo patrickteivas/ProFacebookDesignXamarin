@@ -54,7 +54,6 @@ namespace App1
             if(items[position].ContainsPic)
                 view.FindViewById<ImageView>(Resource.Id.img).SetImageResource(items[position].Pic);
 
-
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
 
@@ -62,40 +61,31 @@ namespace App1
             {
                 Intent commentsActivity = new Intent(context, typeof(CommentActivity));
                 commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[position].Comments));
+                commentsActivity.PutExtra("PostPosition", position);
                 context.StartActivity(commentsActivity);
             };
-            view.FindViewById<TextView>(Resource.Id.likes).Click += (sender, e) => // CustomAdapter_Likes(position);
-            {
-                if (!items[position].IsLiked) items[position].Likes++;
-                else items[position].Likes--;
 
-                MainActivity.posts[position].Likes = items[position].Likes;
-                items[position].IsLiked = !items[position].IsLiked;
-
-                MainActivity.posts[position].IsLiked = items[position].IsLiked;
-                view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
-            };
+            TextView postLikes = view.FindViewById<TextView>(Resource.Id.likes);
+            postLikes.Tag = position;
+            postLikes.Click -= LikeClick;
+            postLikes.Click += LikeClick;
 
             return view;
         }
 
-        //public void CustomAdapter_Likes(int position)
-        //{
-        //    if (!MainActivity.posts[position].IsLiked) MainActivity.posts[position].Likes++;
-        //    else  MainActivity.posts[position].Likes--;
-        //    MainActivity.posts[position].IsLiked = !MainActivity.posts[position].IsLiked;
-        //
-        //    Intent mainActivity = new Intent(context, typeof(MainActivity));
-        //    mainActivity.SetFlags(ActivityFlags.ClearTop);
-        //    mainActivity.SetFlags(ActivityFlags.NoAnimation);
-        //    context.StartActivity(mainActivity);
-        //}
+        private void LikeClick(object sender, EventArgs e)
+        {
+            TextView clickedLikeButton = (TextView)sender;
+            int position = (int)clickedLikeButton.Tag;
 
-        //private void CustomAdapter_Comments(int position)
-        //{
-        //    Intent commentsActivity = new Intent(context, typeof(CommentActivity));
-        //    commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[position].Comments));
-        //    context.StartActivity(commentsActivity);
-        //}
+            if (!items[position].IsLiked) items[position].Likes++;
+            else items[position].Likes--;
+
+            MainActivity.posts[position].Likes = items[position].Likes;
+            items[position].IsLiked = !items[position].IsLiked;
+
+            MainActivity.posts[position].IsLiked = items[position].IsLiked;
+            NotifyDataSetChanged();
+        }
     }
 }
