@@ -19,11 +19,17 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
-            //SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.activity_main);
 
             if(posts == null) TestPosts();
 
             ListAdapter = new PostAdapter(this, posts);
+            FindViewById<Button>(Resource.Id.addPost).Click += addPostButton;
+        }
+
+        private void addPostButton(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void TestPosts()
