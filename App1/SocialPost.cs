@@ -20,7 +20,6 @@ namespace App1
         public DateTimeOffset Date { get; set; }
         public List<Comment> Comments { get; set; }
         public bool IsLiked { get; set; } = false;
-        public bool ContainsPic { get; set; } = false;
-        public int Pic { get; set; }
+        public int Pic { get; set; } = 0;
     }
 }

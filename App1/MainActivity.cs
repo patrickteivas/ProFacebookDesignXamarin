@@ -30,18 +30,15 @@ namespace App1
 
         private void addPostButton(object sender, EventArgs e)
         {
-            posts = new List<SocialPost>();
-            SocialPost post = new SocialPost
+            posts.Add(new SocialPost
             {
-                Name = "NewPost",
+                Name = "TestUser",
                 Message = FindViewById<EditText>(Resource.Id.content).Text,
                 Likes = 0,
                 Date = DateTimeOffset.Now,
                 Comments = new List<Comment>()
-            };
-
-
-            new PostAdapter.UpdateData();
+            });
+            ListAdapter = new PostAdapter(this, posts);
         }
 
         public void TestPosts()
@@ -116,7 +113,6 @@ namespace App1
                 Likes = 0,
                 Date = DateTimeOffset.FromUnixTimeSeconds(1500056855),
                 Comments = comments,
-                ContainsPic = true,
                 Pic = Resource.Drawable.haters
             };
             posts.Add(post);
@@ -190,7 +186,6 @@ namespace App1
                 Likes = 0,
                 Date = DateTimeOffset.FromUnixTimeSeconds(1205056005),
                 Comments = comments,
-                ContainsPic = true,
                 Pic = Resource.Drawable.Random
             };
             posts.Add(post);

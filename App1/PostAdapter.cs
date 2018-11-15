@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace App1
 {
-    class PostAdapter : BaseAdapter<string>
+    public class PostAdapter : BaseAdapter<string>
     {
         readonly List<SocialPost> items;
         readonly Activity context;
@@ -51,19 +51,17 @@ namespace App1
             view.FindViewById<TextView>(Resource.Id.date).Text = " " + items[position].Date.ToString("HH:mm");
             view.FindViewById<TextView>(Resource.Id.msg).Text = items[position].Message;
 
-            if(items[position].ContainsPic)
                 view.FindViewById<ImageView>(Resource.Id.img).SetImageResource(items[position].Pic);
 
             view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
             view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.Count() + " Comments";
 
-            view.FindViewById<TextView>(Resource.Id.comments).Click += (sender, e) => // CustomAdapter_Comments(position);
-            {
-                Intent commentsActivity = new Intent(context, typeof(CommentActivity));
-                commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[position].Comments));
-                commentsActivity.PutExtra("PostPosition", position);
-                context.StartActivity(commentsActivity);
-            };
+            //view.FindViewById<TextView>(Resource.Id.comments).Click += CommentsClick;
+
+            TextView postComments = view.FindViewById<TextView>(Resource.Id.comments);
+            postComments.Tag = position;
+            postComments.Click -= CommentsClick;
+            postComments.Click += CommentsClick;
 
             TextView postLikes = view.FindViewById<TextView>(Resource.Id.likes);
             postLikes.Tag = position;
@@ -71,6 +69,17 @@ namespace App1
             postLikes.Click += LikeClick;
 
             return view;
+        }
+
+        private void CommentsClick(object sender, EventArgs e)
+        {
+            TextView clickedCommentsButton = (TextView)sender;
+            int position = (int)clickedCommentsButton.Tag;
+
+            Intent commentsActivity = new Intent(context, typeof(CommentActivity));
+            commentsActivity.PutExtra("Comments", JsonConvert.SerializeObject(items[position].Comments));
+            commentsActivity.PutExtra("PostPosition", position);
+            context.StartActivity(commentsActivity);
         }
 
         private void LikeClick(object sender, EventArgs e)
@@ -88,7 +97,7 @@ namespace App1
             NotifyDataSetChanged();
         }
 
-        public UpdateData()
+        public void UpdateData()
         {
             NotifyDataSetChanged();
         }
