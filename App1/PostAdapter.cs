@@ -96,10 +96,5 @@ namespace App1
             MainActivity.posts[position].IsLiked = items[position].IsLiked;
             NotifyDataSetChanged();
         }
-
-        public void UpdateData()
-        {
-            NotifyDataSetChanged();
-        }
     }
 }

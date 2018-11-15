@@ -30,14 +30,16 @@ namespace App1
 
         private void addPostButton(object sender, EventArgs e)
         {
+            EditText editText = FindViewById<EditText>(Resource.Id.content);
             posts.Add(new SocialPost
             {
                 Name = "TestUser",
-                Message = FindViewById<EditText>(Resource.Id.content).Text,
+                Message = editText.Text,
                 Likes = 0,
                 Date = DateTimeOffset.Now,
                 Comments = new List<Comment>()
             });
+            editText.Text = "";
             ListAdapter = new PostAdapter(this, posts);
         }
 
