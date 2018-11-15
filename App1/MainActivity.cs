@@ -24,12 +24,24 @@ namespace App1
             if(posts == null) TestPosts();
 
             ListAdapter = new PostAdapter(this, posts);
+
             FindViewById<Button>(Resource.Id.addPost).Click += addPostButton;
         }
 
         private void addPostButton(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            posts = new List<SocialPost>();
+            SocialPost post = new SocialPost
+            {
+                Name = "NewPost",
+                Message = FindViewById<EditText>(Resource.Id.content).Text,
+                Likes = 0,
+                Date = DateTimeOffset.Now,
+                Comments = new List<Comment>()
+            };
+
+
+            new PostAdapter.UpdateData();
         }
 
         public void TestPosts()
